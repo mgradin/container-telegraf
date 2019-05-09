@@ -1,0 +1,19 @@
+---
+- name: Create telegraf data directory
+  file: 
+    path: "{{ VAR_TELEGRAF_DIR }}"
+    recurse: yes
+    state: directory
+
+- name: Start telegraf container
+  docker_container:
+    name: telegraf
+    image: telegraf:latest
+    pull: yes
+    state: started
+    #    volumes:
+    #- "{{ VAR_KAPACITOR_DIR }}:/var/lib/kapacitor:z"
+    links:
+    - influxdb
+    restart_policy: unless-stopped
+

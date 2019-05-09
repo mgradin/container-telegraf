@@ -1,2 +1,5 @@
 ---
 # tasks file for container-telegraf
+- import_tasks: telegraf.yml
+  become: true
+

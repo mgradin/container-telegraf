@@ -18,7 +18,7 @@
     pull: yes
     state: started
     volumes:
-    - "{{ VAR_TELEGRAF_DIR }}/telegraf.conf:/etc/telegraf/telegraf.conf:z:ro"
+    - "{{ VAR_TELEGRAF_DIR }}/telegraf.conf:/etc/telegraf/telegraf.conf:ro"
     links:
     - influxdb
     restart_policy: unless-stopped

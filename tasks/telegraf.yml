@@ -5,14 +5,20 @@
     recurse: yes
     state: directory
 
+- name: Copy telegraf.conf
+  copy:
+    src: telegraf.conf
+    dest: "{{ VAR_TELEGRAF_DIR }}/telegraf.conf"
+    mode: 0644
+
 - name: Start telegraf container
   docker_container:
     name: telegraf
     image: telegraf:latest
     pull: yes
     state: started
-    #    volumes:
-    #- "{{ VAR_KAPACITOR_DIR }}:/var/lib/kapacitor:z"
+    volumes:
+    - "{{ VAR_TELEGRAF_DIR }}/telegraf.conf:/etc/telegraf/telegraf.conf:ro:z"
     links:
     - influxdb
     restart_policy: unless-stopped

@@ -1,2 +1,3 @@
 ---
 # defaults file for container-telegraf
+VAR_TELEGRAF_DIR: /opt/telegraf
